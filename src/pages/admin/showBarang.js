@@ -37,6 +37,7 @@ export default class showBarang extends Component {
             <Table.HeaderCell>Deskripsi</Table.HeaderCell>
             <Table.HeaderCell>Gambar</Table.HeaderCell>
             <Table.HeaderCell>Harga</Table.HeaderCell>
+            <Table.HeaderCell>Stok</Table.HeaderCell>
             <Table.HeaderCell>Kategori</Table.HeaderCell>
             <Table.HeaderCell>Action</Table.HeaderCell>
           </Table.Row>
@@ -51,6 +52,7 @@ export default class showBarang extends Component {
                 <Table.Cell>{datum.deskripsi}</Table.Cell>
                 <Table.Cell>{datum.gambar}</Table.Cell>
                 <Table.Cell>{datum.harga}</Table.Cell>
+                <Table.Cell>{datum.stok}</Table.Cell>
                 <Table.Cell>{datum.kategori}</Table.Cell>
                 <Table.Cell>
                   <Button

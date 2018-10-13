@@ -82,13 +82,17 @@ export default class Home extends Component {
                   return (
                     <Grid.Column style={{ marginBottom: 20 }}>
                       <Card>
-                        <Image src={datum.gambar} />
+                        <Image
+                          src={datum.gambar}
+                          style={{ width: 300, height: 300 }}
+                        />
                         <Card.Content>
                           <Card.Header>{datum.namaBarang}</Card.Header>
                           <Card.Meta>
                             Harga Rp:
                             {datum.harga}
                           </Card.Meta>
+                          <Card.Meta>Stok :{datum.stok}</Card.Meta>
                           <Card.Description>{datum.deskripsi}</Card.Description>
                         </Card.Content>
                         <Card.Content extra>

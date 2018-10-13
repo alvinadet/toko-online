@@ -21,7 +21,9 @@ export default class Cart extends Component {
     namaLengkap: '',
     alamat: '',
     alamatLengkap: '',
-    alignItems: 'center'
+    jumlahHarga: 0,
+    jumlahBarang: 0,
+    detail: false
   };
 
   getData = () => {
@@ -35,11 +37,24 @@ export default class Cart extends Component {
       });
   };
   approve = () => {
+    if (this.state.jumlahBarang > this.state.data.stok) {
+      return alert('kelebihan!');
+    }
+    axios.post('http://localhost:8000/api/itemPembelians', {
+      jumlah: this.state.jumlahBarang,
+      hargaTotal: this.state.jumlahHarga,
+      barangId: this.state.data.id,
+      pembelianId: 1
+    });
     this.setState({
+      jumlahHarga: this.state.jumlahBarang * this.state.data.harga,
       namaLengkap: this.state.nama,
       alamatLengkap: this.state.alamat,
-      nomorLengkap : this.state.nomor
+      nomorLengkap: this.state.nomor,
+      detail: true
     });
+    console.log(this.state.jumlahHarga);
+    this.getData();
   };
   delice = () => {
     alert('Gagal!');
@@ -71,8 +86,18 @@ export default class Cart extends Component {
                         Harga Rp:
                         {this.state.data.harga}
                       </Card.Meta>
+                      <Card.Meta>Stok :{this.state.data.stok}</Card.Meta>
                       <Card.Description>
-                        {this.state.data.deskripsi}
+                        <input
+                          required
+                          onChange={this.handleChange}
+                          placeholder="jumlahBarang"
+                          name="jumlahBarang"
+                          type="number"
+                          value={this.state.jumlahBarang}
+                          min="1"
+                          max={this.state.data.stok}
+                        />
                       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
@@ -91,6 +116,7 @@ export default class Cart extends Component {
                     <Form.Field>
                       <label>Nama Lengkap</label>
                       <input
+                        required={true}
                         onChange={this.handleChange}
                         placeholder="Nama Lengkap"
                         name="nama"
@@ -100,15 +126,17 @@ export default class Cart extends Component {
                     <Form.Field>
                       <label>Alamat</label>
                       <input
+                        required
                         onChange={this.handleChange}
                         placeholder="alamat"
                         name="alamat"
-                        value={this.state.alamatL}
+                        value={this.state.alamat}
                       />
                     </Form.Field>
                     <Form.Field>
                       <label>No HP</label>
                       <input
+                        required
                         onChange={this.handleChange}
                         placeholder="No HP"
                         name="nomor"
@@ -118,31 +146,42 @@ export default class Cart extends Component {
                     </Form.Field>
                   </Form>
                 </Grid.Column>
-
-                <Grid.Column>
-                  <Form>
-                    <Form.Field>
-                      <label>Barang</label>
-                      <label>{this.state.data.namaBarang}</label>
-                    </Form.Field>
-                    <Form.Field>
-                      <label>Harga</label>
-                      <label>{this.state.data.harga}</label>
-                    </Form.Field>
-                    <Form.Field>
-                      <label>Nama Lengkap</label>
-                      <label>{this.state.namaLengkap}</label>
-                    </Form.Field>
-                    <Form.Field>
-                      <label>Alamat</label>
-                      <label>{this.state.alamatLengkap}</label>
-                    </Form.Field>
-                    <Form.Field>
-                      <label>Nomor HP</label>
-                      <label>{this.state.nomorLengkap}</label>
-                    </Form.Field>
-                  </Form>
-                </Grid.Column>
+                {this.state.detail ? (
+                  <Grid.Column>
+                    <Form>
+                      <Form.Field>
+                        <label>Barang</label>
+                        <label>{this.state.data.namaBarang}</label>
+                      </Form.Field>
+                      <Form.Field>
+                        <label>Jumlah</label>
+                        <label>
+                          Rp
+                          {this.state.jumlahHarga}
+                        </label>
+                      </Form.Field>
+                      <Form.Field>
+                        <label>Nama Lengkap</label>
+                        <label>{this.state.namaLengkap}</label>
+                      </Form.Field>
+                      <Form.Field>
+                        <label>Alamat</label>
+                        <label>{this.state.alamatLengkap}</label>
+                      </Form.Field>
+                      <Form.Field>
+                        <label>Nomor HP</label>
+                        <label>{this.state.nomorLengkap}</label>
+                      </Form.Field>
+                      <Form.Field>
+                        <label>
+                          SILAHKAN KIRIM KE BCA 08447002847 a/n Alvin Adetya
+                        </label>
+                      </Form.Field>
+                    </Form>
+                  </Grid.Column>
+                ) : (
+                  <div />
+                )}
               </Grid.Row>
             </Grid>
           </Segment>

@@ -8,7 +8,8 @@ export default class tambahBarang extends Component {
     deskripsi: '',
     harga: 0,
     gambar: '',
-    kategori: ''
+    kategori: '',
+    stok: 0
   };
 
   addData = () => {
@@ -18,7 +19,8 @@ export default class tambahBarang extends Component {
         deskripsi: this.state.deskripsi,
         harga: this.state.harga,
         gambar: this.state.gambar,
-        kategori: this.state.kategori
+        kategori: this.state.kategori,
+        stok: this.state.stok
       })
       .then(res => {
         alert('berhasil!');
@@ -27,7 +29,8 @@ export default class tambahBarang extends Component {
           deskripsi: '',
           harga: '',
           gambar: '',
-          kategori: ''
+          kategori: '',
+          stok: ''
         });
       })
       .catch(err => {
@@ -52,6 +55,7 @@ export default class tambahBarang extends Component {
               onChange={this.handleChange}
               placeholder="Nama Barang"
               name="namaBarang"
+              value={this.state.namaBarang}
             />
           </Form.Field>
           <Form.Field>
@@ -60,6 +64,7 @@ export default class tambahBarang extends Component {
               onChange={this.handleChange}
               placeholder="Deskripsi"
               name="deskripsi"
+              value={this.state.deskripsi}
             />
           </Form.Field>
           <Form.Field>
@@ -68,6 +73,7 @@ export default class tambahBarang extends Component {
               onChange={this.handleChange}
               placeholder="Harga"
               name="harga"
+              value={this.state.harga}
             />
           </Form.Field>
           <Form.Field>
@@ -76,6 +82,17 @@ export default class tambahBarang extends Component {
               onChange={this.handleChange}
               placeholder="URL"
               name="gambar"
+              value={this.state.gambar}
+            />
+          </Form.Field>
+
+          <Form.Field>
+            <label>Stok</label>
+            <input
+              onChange={this.handleChange}
+              placeholder="Stok"
+              name="stok"
+              value={this.state.stok}
             />
           </Form.Field>
           <Form.Field>

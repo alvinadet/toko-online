@@ -9,7 +9,8 @@ export default class tambahBarang extends Component {
     deskripsi: '',
     harga: 0,
     gambar: '',
-    kategori: ''
+    kategori: '',
+    stok: 0
   };
 
   getData = () => {
@@ -21,7 +22,8 @@ export default class tambahBarang extends Component {
           deskripsi: res.data.deskripsi,
           harga: res.data.harga,
           gambar: res.data.gambar,
-          kategori: res.data.kategori
+          kategori: res.data.kategori,
+          stok: res.data.stok
         });
       });
   };
@@ -35,7 +37,8 @@ export default class tambahBarang extends Component {
           deskripsi: this.state.deskripsi,
           harga: this.state.harga,
           gambar: this.state.gambar,
-          kategori: this.state.kategori
+          kategori: this.state.kategori,
+          stok: this.state.stok
         }
       )
       .then(res => {
@@ -91,6 +94,16 @@ export default class tambahBarang extends Component {
               placeholder="URL"
               name="gambar"
               value={this.state.gambar}
+            />
+          </Form.Field>
+
+          <Form.Field>
+            <label>Stok</label>
+            <input
+              onChange={this.handleChange}
+              placeholder="Stok"
+              name="stok"
+              value={this.state.stok}
             />
           </Form.Field>
           <Form.Field>
