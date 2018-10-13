@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Home, Cart } from './users/index';
 import { adminHome, showBarang, tambahBarang, editBarang } from './admin/index';
 import { navbarUser, navbarAdmin } from '../components/index';
-import { Login } from './login';
+import { Login, signUp } from './login';
 
 export default class RouterAll extends Component {
   render() {
@@ -22,6 +22,7 @@ export default class RouterAll extends Component {
           <Route path="/admin/tambahBarang" component={tambahBarang} />
           <Route path="/admin/editBarang/:id" component={editBarang} />
           <Route path="/login" component={Login} />
+          <Route path="/signUp" component={signUp} />
         </Switch>
       </div>
     );

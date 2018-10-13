@@ -30,7 +30,9 @@ export default class MenuExampleHeader extends Component {
           </Button>
         </Menu.Item>
         <Menu.Item>
-          <Button color="green">Sign Up</Button>
+          <Button color="green" as={Link} to="/signUp">
+            Sign Up
+          </Button>
         </Menu.Item>
       </Menu>
     );
