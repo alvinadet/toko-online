@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Router } from './pages';
 
-export default class App extends Component {
+export default class Home extends Component {
   render() {
     return (
       <div>
-        <Router />
+        <h1>Selamat Datang di Panel Admin</h1>
       </div>
     );
   }
